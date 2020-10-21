@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_064724) do
+ActiveRecord::Schema.define(version: 2020_10_21_073010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,7 +55,9 @@ ActiveRecord::Schema.define(version: 2020_10_21_064724) do
     t.boolean "completed_by_athlete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "entry_id"
     t.index ["client_id"], name: "index_booking_requests_on_client_id"
+    t.index ["entry_id"], name: "index_booking_requests_on_entry_id"
     t.index ["provided_service_id"], name: "index_booking_requests_on_provided_service_id"
   end
 
@@ -69,7 +71,9 @@ ActiveRecord::Schema.define(version: 2020_10_21_064724) do
     t.boolean "completed_by_athlete", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "entry_id"
     t.index ["client_id"], name: "index_bookings_on_client_id"
+    t.index ["entry_id"], name: "index_bookings_on_entry_id"
     t.index ["provided_service_id"], name: "index_bookings_on_provided_service_id"
   end
 
@@ -133,8 +137,10 @@ ActiveRecord::Schema.define(version: 2020_10_21_064724) do
   end
 
   add_foreign_key "booking_requests", "clients"
+  add_foreign_key "booking_requests", "entries"
   add_foreign_key "booking_requests", "provided_services"
   add_foreign_key "bookings", "clients"
+  add_foreign_key "bookings", "entries"
   add_foreign_key "bookings", "provided_services"
   add_foreign_key "entries", "athletes"
   add_foreign_key "provided_services", "athletes"
