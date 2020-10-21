@@ -3,7 +3,6 @@ class CreateBookings < ActiveRecord::Migration[6.0]
     create_table :bookings do |t|
       t.string :status, default:'InComplete'
       t.references :client, foreign_key: true
-      t.references :entry, foreign_key: true
       t.references :provided_service, foreign_key: true
       t.string :note
       t.datetime :booking_date

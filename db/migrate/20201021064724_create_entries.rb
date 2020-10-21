@@ -6,7 +6,7 @@ class CreateEntries < ActiveRecord::Migration[6.0]
       t.datetime :to_time
       t.datetime :from_date
       t.datetime :to_date
-      t.reference :athlete, foreign_key: true
+      t.references :athlete, foreign_key: true
       t.timestamps
     end
   end
