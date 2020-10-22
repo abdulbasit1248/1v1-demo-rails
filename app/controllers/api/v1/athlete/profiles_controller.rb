@@ -1,5 +1,5 @@
 class Api::V1::Athlete::ProfilesController < Api::V1::Athlete::ApiController
-  before_action :authenticate, only: [:show]
+  before_action :authenticate, only: [:show, :update]
 
   def create
     @athlete = Athlete.new(athlete_params)
@@ -14,8 +14,13 @@ class Api::V1::Athlete::ProfilesController < Api::V1::Athlete::ApiController
     render json: Athlete::AthleteSerializer.new(current_athlete).serialized_json, status: :ok
   end
 
- def update
- end
+  def update
+    if current_athlete.update(athlete_params)
+      render json: Athlete::AthleteSerializer.new(current_athlete).serialized_json, status: :created
+    else
+      render json: current_athlete.errors, status: :unprocessable_entity
+    end
+  end
 
   private
   def athlete_params
