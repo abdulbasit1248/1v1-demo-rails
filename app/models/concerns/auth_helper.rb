@@ -5,22 +5,19 @@ module AuthHelper
   attr_accessor :pin
 
   def auth_token
-    # if self.class.name == 'Athlete'
-    #   JsonWebToken.encode({ athlete_id: self.id, exp: auth_expires_at })
-    # else
-    #   JsonWebToken.encode({ client_id: self.id, exp: auth_expires_at })
-    # end
-
-    JsonWebToken.encode({ user_id: self.id, exp: auth_expires_at })
+    if self.class.name == 'Athlete'
+      JsonWebToken.encode({ athlete_id: self.id, exp: auth_expires_at })
+    else
+      JsonWebToken.encode({ client_id: self.id, exp: auth_expires_at })
+    end
   end
 
   def regenerate_auth_token
-    # if self.class.name == 'Athlete'
-    #   JsonWebToken.encode({ athlete_id: self.id, exp: update_token_expire_time })
-    # else
-    #   JsonWebToken.encode({ client_id: self.id, exp: update_token_expire_time })
-    # end
-    JsonWebToken.encode({ user_id: self.id, exp: update_token_expire_time })
+    if self.class.name == 'Athlete'
+      JsonWebToken.encode({ athlete_id: self.id, exp: update_token_expire_time })
+    else
+      JsonWebToken.encode({ client_id: self.id, exp: update_token_expire_time })
+    end
   end
 
   def password

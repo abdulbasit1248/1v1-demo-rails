@@ -1,5 +1,5 @@
 class Api::V1::Athlete::ProfilesController < Api::V1::Athlete::ApiController
-  before_action :authenticate, only: [:show, :update]
+  before_action :authenticate, only: [:update, :show, :new, :connect_account]
 
   def create
     @athlete = Athlete.new(athlete_params)

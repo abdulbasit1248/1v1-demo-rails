@@ -1,4 +1,5 @@
 class Api::V1::Athlete::SessionsController < Api::V1::Athlete::ApiController
+  before_action :authenticate, only: [:update]
 
   def create
     @athlete = Athlete.authenticate(params[:email], params[:password])
