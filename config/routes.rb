@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       namespace :athlete do
         resource :profiles, only: [:create, :show, :update]
         resource :sessions, only: [:create]
+        resources :provided_services, only: [:create]
       end
     end
   end
