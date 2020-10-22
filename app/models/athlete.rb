@@ -15,4 +15,10 @@ class Athlete < ApplicationRecord
     male: "Male",
     female: "Female"
   }
+
+  def self.authenticate(email, password)
+    athlete = find_for_authentication(email: email)
+    return nil unless athlete.present?
+    athlete.valid_password?(password) ? athlete : nil
+  end
 end

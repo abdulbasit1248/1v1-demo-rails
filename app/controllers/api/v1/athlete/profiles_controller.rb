@@ -11,7 +11,7 @@ class Api::V1::Athlete::ProfilesController < Api::V1::Athlete::ApiController
   end
 
   def show
-    render json: User::UserSerializer.new(current_user).serialized_json, status: :ok
+    render json: Athlete::AthleteSerializer.new(current_athlete).serialized_json, status: :ok
   end
 
  def update
