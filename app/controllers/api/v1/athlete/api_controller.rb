@@ -27,11 +27,6 @@ class Api::V1::Athlete::ApiController < ActionController::API
 
     def authenticate_token
       return false unless client_id_in_token?
-      # if auth_token[:user_id].present?
-      #   @current_user = Client.find_by(id: auth_token[:client_id])
-      # else
-      #   @current_user = Athlete.find_by(id: auth_token[:athlete_id])
-      # end
       @current_athlete = Athlete.find_by(id: auth_token[:athlete_id])
       return false unless @current_athlete.present?
       set_current_athlete @current_athlete
@@ -56,11 +51,6 @@ class Api::V1::Athlete::ApiController < ActionController::API
     end
 
     def client_id_in_token?
-      # if auth_token[:client_id].present?
-      #   http_token && auth_token && !auth_token.is_a?(String) && auth_token[:client_id].to_i
-      # else
-      #   http_token && auth_token && !auth_token.is_a?(String) && auth_token[:athlete_id].to_i
-      # end
-      http_token && auth_token && !auth_token.is_a?(String) && auth_token[:user_id].to_i
+        http_token && auth_token && !auth_token.is_a?(String) && auth_token[:athlete_id].to_i
     end
 end

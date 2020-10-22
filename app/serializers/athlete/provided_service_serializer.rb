@@ -3,12 +3,9 @@ class Athlete::ProvidedServiceSerializer
 
   attributes :id,
             :name,
-            :service_name,
-            :discription,
+            :description,
             :price,
             :duration,
-            :status,
-            :image_url,
             :location,
             :address,
             :updated_at

@@ -16,10 +16,9 @@ private
       params.require(:provided_service).permit(
         :service_id,
         :name,
-        :discription,
+        :description,
         :price,
         :duration,
-        :image_url,
         :location,
         :address,
       )
