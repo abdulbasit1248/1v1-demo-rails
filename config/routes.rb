@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resource :sessions, only: [:create]
         resources :provided_services, only: [:create, :update, :show, :index]
         resources :schools, only: [:create, :index]
+        resources :entries, only: [:create, :index, :update, :destroy]
       end
     end
   end
