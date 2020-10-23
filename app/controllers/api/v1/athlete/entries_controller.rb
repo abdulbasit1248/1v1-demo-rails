@@ -11,7 +11,8 @@ class Api::V1::Athlete::EntriesController < Api::V1::Athlete::ApiController
   end
 
   def index
-    calendar_entries = current_athlete.entries.all
+    # calendar_entries = current_athlete.entries.all
+    calendar_entries = current_athlete.entries.between(params[:month].to_datetime).order('booking_date ASC') if params[:month].present?
     render json: Athlete::EntrySerializer.new(calendar_entries).serialized_json, status: :created
   end
 
