@@ -25,8 +25,8 @@ class Api::V1::Athlete::ProvidedServicesController < Api::V1::Athlete::ApiContro
   end
 
   def index
-    @services = current_athlete.provided_services
-    render json: Athlete::ProvidedServiceSerializer.new(@services).serialized_json, status: :ok
+    pagy, @services = pagy(current_athlete.provided_services, items: params[:per_page], page: params[:page])
+    render json: Athlete::ProvidedServiceSerializer.new(@services).serializable_hash.merge(pagy: pagy), status: :ok
   end
 
 private

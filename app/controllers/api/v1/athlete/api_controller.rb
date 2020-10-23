@@ -1,6 +1,6 @@
 class Api::V1::Athlete::ApiController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found_error
-  # include Pagy::Backend
+  include Pagy::Backend
 
   def current_athlete
     @current_athlete
