@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_073010) do
+ActiveRecord::Schema.define(version: 2020_10_23_062720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,10 @@ ActiveRecord::Schema.define(version: 2020_10_21_073010) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "school_id"
     t.index ["email"], name: "index_athletes_on_email", unique: true
     t.index ["reset_password_token"], name: "index_athletes_on_reset_password_token", unique: true
+    t.index ["school_id"], name: "index_athletes_on_school_id"
   end
 
   create_table "booking_requests", force: :cascade do |t|
@@ -125,8 +127,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_073010) do
     t.string "school_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "athlete_id"
-    t.index ["athlete_id"], name: "index_schools_on_athlete_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_073010) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "athletes", "schools"
   add_foreign_key "booking_requests", "clients"
   add_foreign_key "booking_requests", "entries"
   add_foreign_key "booking_requests", "provided_services"
@@ -145,5 +146,4 @@ ActiveRecord::Schema.define(version: 2020_10_21_073010) do
   add_foreign_key "entries", "athletes"
   add_foreign_key "provided_services", "athletes"
   add_foreign_key "provided_services", "services"
-  add_foreign_key "schools", "athletes"
 end

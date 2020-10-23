@@ -1,3 +1,3 @@
 class School < ApplicationRecord
-  belongs_to :athlete
+  has_many :athletes
 end

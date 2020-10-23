@@ -6,9 +6,9 @@ class Athlete < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :entries
-  has_one :school
   has_many :provided_services
   has_many :services, through: :provided_services
+  belongs_to :school
   accepts_nested_attributes_for :provided_services
 
   enum gender: {
